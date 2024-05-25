@@ -1,6 +1,6 @@
 # remarkabledayone
 
-A utility to sync pages from a Remarkable 2 table to Day One.
+A utility to sync pages from a Remarkable 2 tablet to Day One.
 
 ## Disclaimers
 
@@ -16,7 +16,6 @@ This is ALPHA software and has the following limitations:
 
 * [Day One](https://apps.apple.com/us/app/day-one/id1055511498?mt=12)
   * Make sure you're logged in!
-* [dayone2]
+* [dayone2](https://dayoneapp.com/guides/tips-and-tutorials/command-line-interface-cli)
 * [rmc](https://github.com/ricklupton/rmc)
 
-[dayone2](https://dayoneapp.com/guides/tips-and-tutorials/command-line-interface-cli)

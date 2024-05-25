@@ -115,7 +115,7 @@ func newZipFromDir(path string) (*Zip, error) {
 		}
 
 		z.Pages = append(z.Pages, Page{
-			ID:   id,
+			ID:   strings.TrimSuffix(f.Name(), ".rm"),
 			Path: filepath.Join(path, id, f.Name()),
 		})
 	}

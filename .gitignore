@@ -1,0 +1,5 @@
+bin/
+dist/
+.env.*
+!.env.development
+.state.yml

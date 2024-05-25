@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
+project_name: remarkabledayone
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - main: ./cmd/{{ .ProjectName }}
+    flags:
+      - -trimpath
+    ldflags:
+      - -s
+      - -w
+    env:
+      - CGO_ENABLED=0
+    goarch:
+      - amd64
+      - arm64
+    goos:
+      - linux
+      - darwin
+archives:
+  - format: tar.xz
+checksum:
+  name_template: "checksums.txt"
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+changelog:
+  sort: asc
+  use: git
+  filters:
+    exclude:
+      - "^test:"
+      - "^chore:"
+      - "merge conflict"
+      - Merge pull request
+      - Merge remote-tracking branch
+      - Merge branch
+      - go mod tidy
+  groups:
+    - title: Dependency updates
+      regexp: "^.*(feat|chore|fix)\\(deps\\)*:+.*$"
+      order: 300
+    - title: "New Features"
+      regexp: "^.*feat[(\\w)]*:+.*$"
+      order: 100
+    - title: "Bug fixes"
+      regexp: "^.*fix[(\\w)]*:+.*$"
+      order: 200
+    - title: "Documentation updates"
+      regexp: "^.*docs[(\\w)]*:+.*$"
+      order: 400
+    - title: Other work
+      order: 9999
+
+release:
+  footer: |-
+    **Full Changelog**: https://github.com/jaredallard/remarkabledayone/compare/{{ .PreviousTag }}...{{ .Tag }}

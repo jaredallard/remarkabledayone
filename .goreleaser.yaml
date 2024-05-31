@@ -25,6 +25,22 @@ checksum:
   name_template: "checksums.txt"
 snapshot:
   name_template: "{{ incpatch .Version }}-next"
+brews:
+  - commit_author:
+      name: GitHub Actions
+      email: 41898282+github-actions[bot]@users.noreply.github.com
+    homepage: https://github.com/jaredallard/remarkabledayone
+    license: AGPL-3.0
+    description: "A utility to sync pages from a Remarkable 2 tablet to Day One"
+    dependencies:
+      - name: imagemagick
+        os: mac
+      - name: inkscape
+        os: mac
+    repository:
+      owner: jaredallard
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN}}"
 changelog:
   sort: asc
   use: git

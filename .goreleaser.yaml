@@ -31,11 +31,12 @@ brews:
       email: 41898282+github-actions[bot]@users.noreply.github.com
     homepage: https://github.com/jaredallard/remarkabledayone
     license: AGPL-3.0
+    caveats: |
+      Dayone must be installed manually from the app store.
+      Inkscape must be installed manually via `brew install --cask inkscape`.
     description: "A utility to sync pages from a Remarkable 2 tablet to Day One"
     dependencies:
       - name: imagemagick
-        os: mac
-      - name: inkscape
         os: mac
     repository:
       owner: jaredallard

@@ -38,4 +38,4 @@ Run the latest release, or build from source `mise run build` into
 
 ## License
 
-GPL-3.0
+AGPL-3.0

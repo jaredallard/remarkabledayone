@@ -89,6 +89,7 @@ func (s *Syncer) Sync() error {
 		pagesHM[p.ID] = struct{}{}
 
 		if _, ok := s.state.SyncedPages[p.ID]; ok {
+			s.log.Debug("page already synced", "page", p.ID)
 			continue
 		}
 
@@ -116,7 +117,7 @@ func (s *Syncer) Sync() error {
 	}
 
 	s.log.With("pages", len(needToSync)).Info("syncing pages")
-	for p := range needToSync {
+	for _, p := range needToSync {
 		page := doc.Zip.Pages[p]
 		s.log.With("page", page.ID).Info("syncing page")
 

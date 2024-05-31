@@ -30,12 +30,12 @@ func RenderRmToPng(src, dest string) error {
 	}
 	defer os.RemoveAll(tmpDir)
 
-	svgFile := filepath.Join(tmpDir, "output.svg")
-	outputFile := svgFile + ".png"
+	pdfFile := filepath.Join(tmpDir, "output.pdf")
+	outputFile := pdfFile + ".png"
 	cmds := [][]string{
 		{"rmc", "--version"},
-		{"rmc", "-t", "svg", src, "-o", svgFile},
-		{"qlmanage", "-t", "-s", "1000", "-o", tmpDir, svgFile},
+		{"rmc", "-t", "pdf", src, "-o", pdfFile},
+		{"convert", "-verbose", "-density", "150", "-trim", pdfFile, "-quality", "100", "-flatten", "-sharpen", "0x1.0", outputFile},
 	}
 	for _, cmd := range cmds {
 		cmd := exec.Command(cmd[0], cmd[1:]...)

@@ -18,4 +18,24 @@ This is ALPHA software and has the following limitations:
   * Make sure you're logged in!
 * [dayone2](https://dayoneapp.com/guides/tips-and-tutorials/command-line-interface-cli)
 * [rmc](https://github.com/ricklupton/rmc)
+* `brew install imagemagick inkscape`
 
+### From Source
+
+* [mise](https://mise.jdx.dev)
+
+## Configuration
+
+Create a `.env` file with the following options:
+
+```bash
+# Name of the notebook to sync into Dayone.
+DOCUMENT_NAME="Journal"
+```
+
+Run the latest release, or build from source `mise run build` into
+`./bin/`. It'll automatically walk you through Remarkable's auth system.
+
+## License
+
+GPL-3.0

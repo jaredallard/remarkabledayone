@@ -37,6 +37,11 @@ func main() {
 		os.Exit(1)
 	}
 
+	if os.Getenv("ENV") == "development" {
+		handler.SetLevel(charmlog.DebugLevel)
+		log.Debug("debug logging enabled")
+	}
+
 	syncer, err := syncer.New(log, cfg)
 	if err != nil {
 		log.With("error", err).Error("failed to create syncer")

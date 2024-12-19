@@ -1,10 +1,6 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": [
-		"config:recommended"
-	],
-	"postUpdateOptions": [
-		"gomodUpdateImportPaths",
-		"gomodTidy"
+		"github>jaredallard/jaredallard:renovate.json5"
 	]
 }

@@ -3,7 +3,7 @@ module github.com/jaredallard/remarkabledayone
 go 1.22.3
 
 require (
-	github.com/caarlos0/env/v11 v11.3.0
+	github.com/caarlos0/env/v11 v11.3.1
 	github.com/charmbracelet/log v0.4.0
 	github.com/joho/godotenv v1.5.1
 	github.com/juruen/rmapi v0.0.25

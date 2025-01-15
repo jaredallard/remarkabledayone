@@ -54,6 +54,15 @@ DOCUMENT_NAME="Journal"
 Run the latest release, or build from source `mise run build` into
 `./bin/`. It'll automatically walk you through Remarkable's auth system.
 
+### Using rmfakecloud
+
+The underlying Go library supports this, simply set the following environment
+variable:
+
+```bash
+export RMAPI_HOST=https://<rmfakecloud-address>
+```
+
 ## License
 
 AGPL-3.0

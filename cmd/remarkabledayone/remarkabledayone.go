@@ -44,6 +44,7 @@ func main() {
 		log.Debug("debug logging enabled")
 	}
 
+	//nolint:gocritic // Why: Acceptable shadow.
 	syncer, err := syncer.New(log, cfg)
 	if err != nil {
 		log.With("error", err).Error("failed to create syncer")

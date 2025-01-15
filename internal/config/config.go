@@ -32,7 +32,7 @@ type Config struct {
 	DocumentName string `env:"DOCUMENT_NAME,required"`
 }
 
-func Load(log *slog.Logger) (*Config, error) {
+func Load(_ *slog.Logger) (*Config, error) {
 	environment := strings.ToLower(os.Getenv("ENV"))
 
 	var envFile string

@@ -5,6 +5,7 @@ go 1.22.3
 require (
 	github.com/caarlos0/env/v11 v11.3.1
 	github.com/charmbracelet/log v0.4.0
+	github.com/jaredallard/cmdexec v1.2.1
 	github.com/joho/godotenv v1.5.1
 	github.com/juruen/rmapi v0.0.25
 	gopkg.in/yaml.v3 v3.0.1

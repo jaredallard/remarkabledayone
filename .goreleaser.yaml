@@ -36,7 +36,7 @@ builds:
 checksum:
   name_template: "checksums.txt"
 snapshot:
-  name_template: "{{ incpatch .Version }}-next"
+  version_template: "{{ incpatch .Version }}-next"
 changelog:
   use: git
 release:
@@ -54,6 +54,11 @@ brews:
     caveats: |
       Dayone must be installed manually from the app store.
       Inkscape must be installed manually via `brew install --cask inkscape`.
+      rmc must be installed manually. Recommend path is to use `uv` to
+      install it:
+
+        brew install uv
+        uv tool install rmc
     description: "A utility to sync pages from a Remarkable 2 tablet to Day One"
     dependencies:
       - name: imagemagick
@@ -61,5 +66,5 @@ brews:
     repository:
       owner: jaredallard
       name: homebrew-tap
-      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN}}"
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
 ## <</Stencil::Block>>

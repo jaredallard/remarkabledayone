@@ -47,6 +47,7 @@ func New(log *slog.Logger, cfg *config.Config) (*Syncer, error) {
 		st.SyncedPages = make(map[string]struct{})
 	}
 
+	//nolint:gocritic // Why: Acceptable shadow.
 	rm, err := rm.New(log.With("component", "remarkable"))
 	if err != nil {
 		log.With("error", err).Error("failed to create remarkable client")

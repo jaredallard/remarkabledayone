@@ -20,8 +20,9 @@ package rm
 import (
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
+
+	"github.com/jaredallard/cmdexec"
 )
 
 // RenderRmToPng renders a remarkable document to a PNG file.
@@ -40,9 +41,9 @@ func RenderRmToPng(src, dest string) error {
 		{"convert", "-verbose", "-density", "150", "-trim", pdfFile, "-quality", "100", "-flatten", "-sharpen", "0x1.0", outputFile},
 	}
 	for _, cmd := range cmds {
-		cmd := exec.Command(cmd[0], cmd[1:]...)
-		cmd.Stdout = os.Stdout
-		cmd.Stderr = os.Stderr
+		cmd := cmdexec.Command(cmd[0], cmd[1:]...)
+		cmd.SetStdout(os.Stdout)
+		cmd.SetStderr(os.Stderr)
 		if err := cmd.Run(); err != nil {
 			return fmt.Errorf("failed to run command %v: %w", cmd, err)
 		}

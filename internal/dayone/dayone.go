@@ -25,7 +25,7 @@ import (
 )
 
 // EntryFromPNG creates a new DayOne entry from a PNG file.
-func EntryFromPNG(src string, title string, tags []string) error {
+func EntryFromPNG(src, title string, tags []string) error {
 	args := []string{"--attachments", src}
 
 	if len(tags) > 0 {

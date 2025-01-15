@@ -1,4 +1,4 @@
-// Copyright (C) 2024 remarkabledayone contributors
+// Copyright (C) 2025 remarkabledayone contributors
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -47,11 +47,9 @@ type Document struct {
 }
 
 // remarkableAuth attempts to authenticate with remarkable's API.
-func remarkableAuth(log *slog.Logger) (api.ApiCtx, *api.UserInfo, error) {
+func remarkableAuth(_ *slog.Logger) (api.ApiCtx, *api.UserInfo, error) {
 	for range 3 {
-		transport := api.AuthHttpCtx(true, false)
-
-		ctx, userInf, err := apiCtxForTransport(transport)
+		ctx, userInf, err := apiCtxForTransport(api.AuthHttpCtx(true, false))
 		if err != nil {
 			log.With("error", err).Error("failed to authenticate")
 			continue
@@ -65,13 +63,13 @@ func remarkableAuth(log *slog.Logger) (api.ApiCtx, *api.UserInfo, error) {
 }
 
 // apiCtxForTransport creates an API context for the given transport.
-func apiCtxForTransport(transport *transport.HttpClientCtx) (api.ApiCtx, *api.UserInfo, error) {
-	userInfo, err := api.ParseToken(transport.Tokens.UserToken)
+func apiCtxForTransport(tctx *transport.HttpClientCtx) (api.ApiCtx, *api.UserInfo, error) {
+	userInfo, err := api.ParseToken(tctx.Tokens.UserToken)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	apiCtx, err := api.CreateApiCtx(transport, userInfo.SyncVersion)
+	apiCtx, err := api.CreateApiCtx(tctx, userInfo.SyncVersion)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -80,6 +78,8 @@ func apiCtxForTransport(transport *transport.HttpClientCtx) (api.ApiCtx, *api.Us
 }
 
 // New creates a new Client for interacting with the Remarkable API.
+//
+//nolint:gocritic // Why: Acceptable shadow.
 func New(log *slog.Logger) (*Client, error) {
 	ctx, userInfo, err := remarkableAuth(log)
 	if err != nil {
@@ -105,6 +105,16 @@ func (c *Client) ListDocuments() []*model.Node {
 	})
 
 	return docs
+}
+
+// sanitizeArchivePath to mitigate "G305".
+func sanitizeArchivePath(d, t string) (v string, err error) {
+	v = filepath.Join(d, t)
+	if strings.HasPrefix(v, filepath.Clean(d)) {
+		return v, nil
+	}
+
+	return "", fmt.Errorf("%s: %s", "content filepath is tainted", t)
 }
 
 func (c *Client) zipFromArchive(tmpDir, path string) (*Zip, error) {
@@ -138,7 +148,10 @@ func (c *Client) zipFromArchive(tmpDir, path string) (*Zip, error) {
 			}
 
 			// Create the file in the temporary directory.
-			outPath := filepath.Join(tmpDir, f.Name)
+			outPath, err := sanitizeArchivePath(tmpDir, f.Name)
+			if err != nil {
+				return err
+			}
 
 			// Ensure the directory exists.
 			if err := os.MkdirAll(filepath.Dir(outPath), 0o755); err != nil {
@@ -152,6 +165,7 @@ func (c *Client) zipFromArchive(tmpDir, path string) (*Zip, error) {
 			defer out.Close()
 
 			// Copy the file.
+			//#nosec:G110 // Why: This is acceptable for our use case.
 			if _, err := io.Copy(out, zf); err != nil {
 				return err
 			}
@@ -179,10 +193,10 @@ func (c *Client) DownloadDocument(doc *model.Document) (*Document, error) {
 	}
 
 	c.log.Info("downloaded document", "name", doc.VissibleName, "path", tmpFile)
-	zip, err := c.zipFromArchive(tmpDir, tmpFile)
+	z, err := c.zipFromArchive(tmpDir, tmpFile)
 	if err != nil {
 		return nil, err
 	}
 
-	return &Document{tmpFile, zip}, nil
+	return &Document{tmpFile, z}, nil
 }

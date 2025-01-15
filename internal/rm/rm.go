@@ -186,13 +186,13 @@ func (c *Client) DownloadDocument(doc *model.Document) (*Document, error) {
 		log.With("error", err).Error("failed to create temporary directory")
 		os.Exit(1)
 	}
-	tmpFile := filepath.Join(tmpDir, strings.TrimSuffix(doc.VissibleName, ".zip")+".zip")
+	tmpFile := filepath.Join(tmpDir, strings.TrimSuffix(doc.Name, ".zip")+".zip")
 
 	if err := c.rm.FetchDocument(doc.ID, tmpFile); err != nil {
 		return nil, err
 	}
 
-	c.log.Info("downloaded document", "name", doc.VissibleName, "path", tmpFile)
+	c.log.Info("downloaded document", "name", doc.Name, "path", tmpFile)
 	z, err := c.zipFromArchive(tmpDir, tmpFile)
 	if err != nil {
 		return nil, err

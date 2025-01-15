@@ -1,13 +1,15 @@
 module github.com/jaredallard/remarkabledayone
 
-go 1.22.3
+go 1.23
+
+replace github.com/juruen/rmapi => github.com/ddvk/rmapi v0.0.28
 
 require (
 	github.com/caarlos0/env/v11 v11.3.1
 	github.com/charmbracelet/log v0.4.0
 	github.com/jaredallard/cmdexec v1.2.1
 	github.com/joho/godotenv v1.5.1
-	github.com/juruen/rmapi v0.0.25
+	github.com/juruen/rmapi v0.0.0 // See replacement at the top of this file.
 	gopkg.in/yaml.v3 v3.0.1
 )
 
@@ -34,9 +36,9 @@ require (
 	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/unidoc/unipdf/v3 v3.6.1 // indirect
 	golang.org/x/exp v0.0.0-20231006140011-7918f672742d // indirect
-	golang.org/x/image v0.0.0-20200119044424-58c23975cae1 // indirect
+	golang.org/x/image v0.5.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.13.0 // indirect
-	golang.org/x/text v0.3.2 // indirect
+	golang.org/x/text v0.7.0 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
 )

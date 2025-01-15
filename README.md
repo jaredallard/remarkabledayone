@@ -12,7 +12,19 @@ This is ALPHA software and has the following limitations:
 - Once a journal entry has been created on the Day One side, it cannot
   be updated (edits will not be reflected).
 
-## Prerequisites
+## Installation
+
+### Brew
+
+```bash
+brew install jaredallard/tap/remarkabledayone uv
+brew install --cask inkscape
+uv tool install rmc
+
+# Ensure `~/.local/bin` is in your PATH
+```
+
+### Manual
 
 - [Day One](https://apps.apple.com/us/app/day-one/id1055511498?mt=12)
   - Make sure you're logged in!
@@ -20,7 +32,13 @@ This is ALPHA software and has the following limitations:
 - [rmc](https://github.com/ricklupton/rmc)
 - `brew install imagemagick inkscape`
 
+Download a release from the [Releases](/releases) page. Note that
+operating systems other than macOS do not work, despite releases being
+provided.
+
 ### From Source
+
+You'll need everything under [Manual](#manual)
 
 - [mise](https://mise.jdx.dev)
 

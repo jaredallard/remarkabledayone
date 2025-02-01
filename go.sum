@@ -17,8 +17,8 @@ github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ3
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/ddvk/rmapi v0.0.28 h1:7jHZJI4f1hhXyknxQz8JzXek61WRqOfCujK3Rqllb+c=
-github.com/ddvk/rmapi v0.0.28/go.mod h1:NhhiZb+0UpqrXVSZGXLJMlh4pvjsyDoLcIlq2mv8JjQ=
+github.com/ddvk/rmapi v0.0.29 h1:KQbOKVAvXXi0PxoMiuMHwMOSg8RgjjFgZBNuBw8snxw=
+github.com/ddvk/rmapi v0.0.29/go.mod h1:NhhiZb+0UpqrXVSZGXLJMlh4pvjsyDoLcIlq2mv8JjQ=
 github.com/go-logfmt/logfmt v0.6.0 h1:wGYYu3uicYdqXVgoYbvnkrPVXkuLM1p1ifugDMEdRi4=
 github.com/go-logfmt/logfmt v0.6.0/go.mod h1:WYhtIu8zTZfxdn5+rREduYbwxfcBr/Vr6KEVveWlfTs=
 github.com/golang-jwt/jwt v3.2.2+incompatible h1:IfV12K8xAKAnZqdXVzCZ+TOjboZ2keLg81eXfW3O+oY=

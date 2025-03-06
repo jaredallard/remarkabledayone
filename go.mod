@@ -7,7 +7,7 @@ replace github.com/juruen/rmapi => github.com/ddvk/rmapi v0.0.29
 require (
 	github.com/caarlos0/env/v11 v11.3.1
 	github.com/charmbracelet/log v0.4.0
-	github.com/jaredallard/cmdexec v1.2.1
+	github.com/jaredallard/cmdexec v1.2.2
 	github.com/joho/godotenv v1.5.1
 	github.com/juruen/rmapi v0.0.0 // See replacement at the top of this file.
 	gopkg.in/yaml.v3 v3.0.1

@@ -15,7 +15,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0
 
-// Config contains configuration for the syncer.
+// Package config contains configuration for the syncer.
 package config
 
 import (
@@ -27,11 +27,14 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// Config is the configuration for the remarkabledayone CLI.
 type Config struct {
 	// DocumentName is the name of the document to sync.
 	DocumentName string `env:"DOCUMENT_NAME,required"`
 }
 
+// Load returns an initialized [Config] based on the current environment
+// read from the ENV environment variable.
 func Load(_ *slog.Logger) (*Config, error) {
 	environment := strings.ToLower(os.Getenv("ENV"))
 

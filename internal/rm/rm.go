@@ -35,12 +35,15 @@ import (
 	"github.com/juruen/rmapi/transport"
 )
 
+// Client is a client for interacting with remarkable documents
+// (journals).
 type Client struct {
 	log  *slog.Logger
 	rm   api.ApiCtx
 	user *api.UserInfo
 }
 
+// Document represents an archived remarkable journal.
 type Document struct {
 	Path string
 	Zip  *Zip
@@ -118,11 +121,12 @@ func sanitizeArchivePath(d, t string) (v string, err error) {
 }
 
 func (c *Client) zipFromArchive(tmpDir, path string) (*Zip, error) {
+	//#nosec:G304 // Why: Safe for our usecase.
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, err
 	}
-	defer f.Close()
+	defer f.Close() //nolint:errcheck // Why: Best effort.
 
 	fInf, err := f.Stat()
 	if err != nil {
@@ -140,7 +144,7 @@ func (c *Client) zipFromArchive(tmpDir, path string) (*Zip, error) {
 			if err != nil {
 				return err
 			}
-			defer zf.Close()
+			defer zf.Close() //nolint:errcheck // Why: Best effort.
 
 			// Skip directories.
 			if f.FileInfo().IsDir() {
@@ -154,15 +158,16 @@ func (c *Client) zipFromArchive(tmpDir, path string) (*Zip, error) {
 			}
 
 			// Ensure the directory exists.
-			if err := os.MkdirAll(filepath.Dir(outPath), 0o755); err != nil {
+			if err := os.MkdirAll(filepath.Dir(outPath), 0o750); err != nil {
 				return err
 			}
 
+			//#nosec:G304 // Why: Safe for our usecase.
 			out, err := os.Create(outPath)
 			if err != nil {
 				return err
 			}
-			defer out.Close()
+			defer out.Close() //nolint:errcheck // Why: Best effort.
 
 			// Copy the file.
 			//#nosec:G110 // Why: This is acceptable for our use case.

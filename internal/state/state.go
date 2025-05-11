@@ -27,8 +27,10 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// FileName is the name where state is stored.
 const FileName = "state.yml"
 
+// State represents the state object used for tracking state across runs.
 type State struct {
 	// log is the logger for the state.
 	log *slog.Logger `yaml:"-"`
@@ -44,12 +46,12 @@ type State struct {
 // readStateFile reads the state file at the given path and returns the
 // state. If an error occurs, it will return the error.
 func readStateFile(path string) (*State, error) {
-	// Found the state file, load it.
+	//#nosec:G304 // Why: Safe for our usecase.
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, err
 	}
-	defer f.Close()
+	defer f.Close() //nolint:errcheck // Why: Best effort.
 
 	st := &State{}
 	if err := yaml.NewDecoder(f).Decode(st); err != nil {
@@ -127,7 +129,7 @@ func (s *State) Save() error {
 	s.log.Info("saving state", "path", s.path)
 
 	// Ensure the directory exists.
-	if err := os.MkdirAll(filepath.Dir(s.path), 0o755); err != nil {
+	if err := os.MkdirAll(filepath.Dir(s.path), 0o750); err != nil {
 		return err
 	}
 
@@ -135,7 +137,7 @@ func (s *State) Save() error {
 	if err != nil {
 		return err
 	}
-	defer f.Close()
+	defer f.Close() //nolint:errcheck // Why: Best effort.
 
 	return yaml.NewEncoder(f).Encode(s)
 }

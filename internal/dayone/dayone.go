@@ -15,7 +15,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0
 
-// Package implements a small wrapper around the dayone2 CLI for
+// Package dayone implements a small wrapper around the dayone2 CLI for
 // creating entries in DayOne.
 package dayone
 
@@ -37,6 +37,7 @@ func EntryFromPNG(src, title string, tags []string) error {
 	// Add the new, title and attachment arguments.
 	args = append(args, "new", title, "[{attachment}]")
 
+	//#nosec:G204 // Why: Safe for our usecase.
 	cmd := exec.Command("dayone2", args...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr

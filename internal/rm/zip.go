@@ -37,6 +37,7 @@ type Zip struct {
 	Pages []Page
 }
 
+// Metadata is the metadata of a [Page].
 type Metadata struct {
 	CreatedTime    string `json:"createdTime"`
 	LastModified   string `json:"lastModified"`
@@ -48,6 +49,7 @@ type Metadata struct {
 	VisibleName    string `json:"visibleName"`
 }
 
+// Page represents a page in a remarkable journal.
 type Page struct {
 	// ID is the ID of the page.
 	ID string
@@ -95,11 +97,12 @@ func newZipFromDir(path string) (*Zip, error) {
 	id := strings.TrimSuffix(metadataPath, ".metadata")
 
 	// Load the metadata file.
+	//#nosec:G304 // Why: Safe for our usecase.
 	f, err := os.Open(filepath.Join(path, metadataPath))
 	if err != nil {
 		return nil, err
 	}
-	defer f.Close()
+	defer f.Close() //nolint:errcheck // Why: Best effort.
 
 	if err := json.NewDecoder(f).Decode(&z.Metadata); err != nil {
 		return nil, err

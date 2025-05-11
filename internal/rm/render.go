@@ -31,7 +31,7 @@ func RenderRmToPng(src, dest string) error {
 	if err != nil {
 		return err
 	}
-	defer os.RemoveAll(tmpDir)
+	defer os.RemoveAll(tmpDir) //nolint:errcheck // Why: Best effort.
 
 	pdfFile := filepath.Join(tmpDir, "output.pdf")
 	outputFile := pdfFile + ".png"

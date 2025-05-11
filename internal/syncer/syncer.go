@@ -15,8 +15,8 @@
 //
 // SPDX-License-Identifier: AGPL-3.0
 
-// Package implements a syncer between remarkable and dayone. It does
-// not currently write back to Remarkable.
+// Package syncer implements a syncer between remarkable and dayone. It
+// does  not currently write back to Remarkable.
 package syncer
 
 import (
@@ -80,7 +80,7 @@ func (s *Syncer) Sync() error {
 	if err != nil {
 		return fmt.Errorf("failed to download document: %w", err)
 	}
-	defer os.RemoveAll(doc.Path)
+	defer os.RemoveAll(doc.Path) //nolint:errcheck // Why: Best effort.
 
 	s.log.Info("fetched document", "path", doc.Path, "pages", len(doc.Zip.Pages))
 

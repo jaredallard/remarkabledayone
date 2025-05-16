@@ -2,7 +2,7 @@ module github.com/jaredallard/remarkabledayone
 
 go 1.23
 
-replace github.com/juruen/rmapi => github.com/ddvk/rmapi v0.0.29
+replace github.com/juruen/rmapi => github.com/ddvk/rmapi v0.0.30
 
 require (
 	github.com/caarlos0/env/v11 v11.3.1

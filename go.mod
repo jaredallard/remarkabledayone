@@ -5,7 +5,7 @@ go 1.23
 replace github.com/juruen/rmapi => github.com/ddvk/rmapi v0.0.32
 
 require (
-	github.com/caarlos0/env/v11 v11.3.1
+	github.com/caarlos0/env/v11 v11.4.0
 	github.com/charmbracelet/log v0.4.2
 	github.com/jaredallard/cmdexec v1.3.0
 	github.com/joho/godotenv v1.5.1

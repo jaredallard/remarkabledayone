@@ -96,7 +96,7 @@ jobs:
           ## <<Stencil::Block(goreleaseEnvVars)>>
           HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
           ## <</Stencil::Block>>
-      - uses: actions/attest-build-provenance@v3
+      - uses: actions/attest-build-provenance@v4
         with:
           # We attest all generated _archives_ because those are what we
           # upload to Github Releases.

@@ -40,9 +40,17 @@ snapshot:
 changelog:
   use: git
 release:
+  gitea:
+    owner: jaredallard
+    name: remarkabledayone
+
   prerelease: "auto"
   footer: |-
-    **Full Changelog**: https://github.com/jaredallard/remarkabledayone/compare/{{ .PreviousTag }}...{{ .Tag }}
+    **Full Changelog**: https://git.rgst.io/jaredallard/remarkabledayone/compare/{{ .PreviousTag }}...{{ .Tag }}
+
+gitea_urls:
+  api: https://git.rgst.io/api/v1
+  download: https://git.rgst.io
 
 ## <<Stencil::Block(extraReleaseOpts)>>
 brews:

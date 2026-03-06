@@ -57,7 +57,7 @@ brews:
   - commit_author:
       name: GitHub Actions
       email: 41898282+github-actions[bot]@users.noreply.github.com
-    homepage: https://github.com/jaredallard/remarkabledayone
+    homepage: https://git.rgst.io/jaredallard/remarkabledayone
     license: AGPL-3.0
     caveats: |
       Dayone must be installed manually from the app store.

@@ -1,11 +1,11 @@
 module github.com/jaredallard/remarkabledayone
 
-go 1.23.0
+go 1.26.0
 
 replace github.com/juruen/rmapi => github.com/ddvk/rmapi v0.0.35
 
 require (
-	github.com/caarlos0/env/v11 v11.4.1
+	github.com/caarlos0/env/v11 v11.4.2
 	github.com/charmbracelet/log v0.4.2
 	github.com/jaredallard/cmdexec v1.4.0
 	github.com/joho/godotenv v1.5.1
